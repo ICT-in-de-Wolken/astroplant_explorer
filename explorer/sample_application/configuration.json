@@ -1,0 +1,70 @@
+{
+    "ae_id": "sense0001",
+    "local_MQTT": {
+        "root_topic": "asex/{ae_id}/",
+        "control_sub_tpc": "control"
+    },
+    "buttons": [
+        {
+            "name": "btn1",
+            "description": "Button 1",
+            "AE_Pin": "D5"
+        },
+        {
+            "name": "btn2",
+            "description": "Button 2",
+            "AE_Pin": "D6"
+        },
+        {
+            "name": "btn3",
+            "description": "Button 3",
+            "AE_Pin": "D7"
+        }
+    ],
+    "dht_air": {
+        "name": "dht_air",
+        "description": "DHT case air temperature and humidity sensor.",
+        "AE_Pin": "DHT",
+        "pub_interval": 60,
+        "meas_interval": 5,
+        "publish_sub": "sensors/dht",
+        "dht_type": "DHT11"
+    },
+    "fan_control": {
+        "name": "case_fan",
+        "description": "Case cooling fan relay.",
+        "AE_Pin": "D16",
+        "threshold_temperature": 21,
+        "publish_sub": "sensors/case_fan"
+    },
+    "lcd_display": {
+        "display_sub_tpc": "lcd_directive",
+        "tick": 0.25,
+        "preloads": [
+            {
+                "action": "upsert",
+                "id": "start",
+                "l1": "AstroPlant Xplrr",
+                "l2": "Starting up...",
+                "secs": 4,
+                "recur": false
+            },
+            {
+                "action": "upsert",
+                "id": "info",
+                "l1": "*date_time*",
+                "l2": "*IP*",
+                "secs": 1,
+                "recur": true
+            },
+            {
+                "action": "upsert",
+                "id": "logo",
+                "l1": "Sensemakers",
+                "l2": "AstroPlant Xplrr",
+                "secs": 1,
+                "recur": true
+            }
+        ]
+    }
+}
